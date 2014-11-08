@@ -1,0 +1,1 @@
+name="framework-res.apk" certificate="build/security/platform.x509.pem" private_key="build/security/platform.pk8"
