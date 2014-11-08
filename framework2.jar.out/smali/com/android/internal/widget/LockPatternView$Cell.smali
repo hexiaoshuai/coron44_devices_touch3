@@ -310,3 +310,18 @@
 
     return-object v0
 .end method
+
+.method public static declared-synchronized of(II)Lcom/android/internal/widget/LockPatternView$Cell;
+    .locals 1
+    .parameter "row"
+    .parameter "column"
+
+    .prologue
+    const/4 v0, 0x3
+
+    invoke-static {p0, p1, v0}, Lcom/android/internal/widget/LockPatternView$Cell;->of(IIB)Lcom/android/internal/widget/LockPatternView$Cell;
+
+    move-result-object v0
+
+    return-object v0
+.end method

@@ -2168,48 +2168,40 @@
 
     if-eqz v3, :cond_1
 
-    .line 186
     monitor-exit p0
 
     move-object v15, v8
 
-    .line 259
     :goto_1
     return-object v15
 
-    .line 179
     .end local v8           #r:Landroid/content/res/Resources;
     :cond_0
     const/4 v8, 0x0
 
     goto :goto_0
 
-    .line 188
     .restart local v8       #r:Landroid/content/res/Resources;
     :cond_1
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 195
-    new-instance v9, Landroid/content/res/AssetManager;
+    new-instance v9, Landroid/content/res/BaiduAssetManager;
 
-    invoke-direct {v9}, Landroid/content/res/AssetManager;-><init>()V
+    invoke-direct {v9}, Landroid/content/res/BaiduAssetManager;-><init>()V
 
-    .line 196
     .local v9, assets:Landroid/content/res/AssetManager;
     move-object/from16 v0, p4
 
     invoke-virtual {v9, v0}, Landroid/content/res/AssetManager;->setAppName(Ljava/lang/String;)V
 
-    .line 197
     move-object/from16 v0, p6
 
     iget-boolean v3, v0, Landroid/content/res/CompatibilityInfo;->isThemeable:Z
 
     invoke-virtual {v9, v3}, Landroid/content/res/AssetManager;->setThemeSupport(Z)V
 
-    .line 198
     move-object/from16 v0, p1
 
     invoke-virtual {v9, v0}, Landroid/content/res/AssetManager;->addAssetPath(Ljava/lang/String;)I
@@ -2373,14 +2365,14 @@
 
     .line 238
     :cond_7
-    new-instance v8, Landroid/content/res/Resources;
+    new-instance v8, Landroid/content/res/BaiduResources;
 
     .end local v8           #r:Landroid/content/res/Resources;
     move-object/from16 v12, p6
 
     move-object/from16 v13, p7
 
-    invoke-direct/range {v8 .. v13}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;Landroid/os/IBinder;)V
+    invoke-direct/range {v8 .. v13}, Landroid/content/res/BaiduResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;Landroid/os/IBinder;)V
 
     .line 239
     .restart local v8       #r:Landroid/content/res/Resources;
@@ -2545,48 +2537,38 @@
     .prologue
     const/4 v7, 0x1
 
-    .line 278
-    new-instance v1, Landroid/content/res/AssetManager;
+    new-instance v1, Landroid/content/res/BaiduAssetManager;
 
-    invoke-direct {v1}, Landroid/content/res/AssetManager;-><init>()V
+    invoke-direct {v1}, Landroid/content/res/BaiduAssetManager;-><init>()V
 
-    .line 279
     .local v1, assets:Landroid/content/res/AssetManager;
     invoke-virtual {v1, p3}, Landroid/content/res/AssetManager;->setAppName(Ljava/lang/String;)V
 
-    .line 280
     invoke-virtual {v1, v7}, Landroid/content/res/AssetManager;->setThemeSupport(Z)V
 
-    .line 281
     invoke-virtual {v1, p1}, Landroid/content/res/AssetManager;->addAssetPath(Ljava/lang/String;)I
 
     move-result v4
 
     if-nez v4, :cond_0
 
-    .line 282
     const/4 v0, 0x0
 
-    .line 310
     :goto_0
     return-object v0
 
-    .line 286
     :cond_0
     invoke-virtual {p0, p2}, Landroid/app/ResourcesManager;->getDisplayMetricsLocked(I)Landroid/util/DisplayMetrics;
 
     move-result-object v2
 
-    .line 288
     .local v2, dm:Landroid/util/DisplayMetrics;
     if-nez p2, :cond_1
 
-    .line 289
     .local v7, isDefaultDisplay:Z
     :goto_1
     if-nez v7, :cond_2
 
-    .line 290
     new-instance v3, Landroid/content/res/Configuration;
 
     invoke-virtual {p0}, Landroid/app/ResourcesManager;->getConfiguration()Landroid/content/res/Configuration;
@@ -2595,49 +2577,39 @@
 
     invoke-direct {v3, v4}, Landroid/content/res/Configuration;-><init>(Landroid/content/res/Configuration;)V
 
-    .line 291
     .local v3, config:Landroid/content/res/Configuration;
     invoke-virtual {p0, v2, v3}, Landroid/app/ResourcesManager;->applyNonDefaultDisplayMetricsToConfigurationLocked(Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
 
-    .line 297
     :goto_2
     new-instance v6, Landroid/content/res/ThemeConfig$Builder;
 
     invoke-direct {v6}, Landroid/content/res/ThemeConfig$Builder;-><init>()V
 
-    .line 298
     .local v6, builder:Landroid/content/res/ThemeConfig$Builder;
     invoke-virtual {v6, p4}, Landroid/content/res/ThemeConfig$Builder;->defaultOverlay(Ljava/lang/String;)Landroid/content/res/ThemeConfig$Builder;
 
-    .line 299
     invoke-virtual {v6, p4}, Landroid/content/res/ThemeConfig$Builder;->defaultIcon(Ljava/lang/String;)Landroid/content/res/ThemeConfig$Builder;
 
-    .line 300
     invoke-virtual {v6, p4}, Landroid/content/res/ThemeConfig$Builder;->defaultFont(Ljava/lang/String;)Landroid/content/res/ThemeConfig$Builder;
 
-    .line 302
     invoke-virtual {v6}, Landroid/content/res/ThemeConfig$Builder;->build()Landroid/content/res/ThemeConfig;
 
     move-result-object v8
 
-    .line 303
     .local v8, themeConfig:Landroid/content/res/ThemeConfig;
     invoke-direct {p0, v1, v8}, Landroid/app/ResourcesManager;->attachThemeAssets(Landroid/content/res/AssetManager;Landroid/content/res/ThemeConfig;)Z
 
-    .line 304
     invoke-direct {p0, v1, v8}, Landroid/app/ResourcesManager;->attachCommonAssets(Landroid/content/res/AssetManager;Landroid/content/res/ThemeConfig;)Z
 
-    .line 305
     invoke-direct {p0, v1, v8}, Landroid/app/ResourcesManager;->attachIconAssets(Landroid/content/res/AssetManager;Landroid/content/res/ThemeConfig;)Z
 
-    .line 307
-    new-instance v0, Landroid/content/res/Resources;
+    new-instance v0, Landroid/content/res/BaiduResources;
 
     move-object v4, p5
 
     move-object v5, p6
 
-    invoke-direct/range {v0 .. v5}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;Landroid/os/IBinder;)V
+    invoke-direct/range {v0 .. v5}, Landroid/content/res/BaiduResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;Landroid/os/IBinder;)V
 
     .line 308
     .local v0, r:Landroid/content/res/Resources;

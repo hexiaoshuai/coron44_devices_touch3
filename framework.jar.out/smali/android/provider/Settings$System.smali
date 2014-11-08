@@ -109,6 +109,8 @@
     .end annotation
 .end field
 
+.field public static final BUTTON_LIGHT_OFF:Ljava/lang/String; = "button_light_off"
+
 .field public static final BUTTON_BACKLIGHT_TIMEOUT:Ljava/lang/String; = "button_backlight_timeout"
 
 .field public static final BUTTON_BRIGHTNESS:Ljava/lang/String; = "button_brightness"
@@ -763,6 +765,8 @@
 .field public static final VOLUME_MUSIC:Ljava/lang/String; = "volume_music"
 
 .field public static final VOLUME_NOTIFICATION:Ljava/lang/String; = "volume_notification"
+
+.field public static final VOLUME_REVOKE:Ljava/lang/String; = "volume_revoke"
 
 .field public static final VOLUME_OVERLAY_EXPANDABLE:I = 0x1
 
