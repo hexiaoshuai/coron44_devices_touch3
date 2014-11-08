@@ -1,3 +1,6 @@
+system/etc/firmware/wcd9306/wcd9306_mbhc.bin|data/misc/audio/mbhc.bin
+system/etc/firmware/wcd9306/wcd9320_anc.bin|data/misc/audio/wcd9310_anc.bin
+system/bin/dump.f2fs|system/bin/fsck.f2fs
 system/bin/cat|system/bin/toolbox
 system/bin/chcon|system/bin/toolbox
 system/bin/chmod|system/bin/toolbox

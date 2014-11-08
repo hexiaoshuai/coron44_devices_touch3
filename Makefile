@@ -1,3 +1,4 @@
+BASE :=base_cm
 # Makefile Reference
 # Please use this file as the project Makefile reference
 
@@ -131,7 +132,7 @@ vendor_modify_jars := android.policy framework framework2 pm services telephony-
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_apps := Phone
+baidu_modify_apps := SettingsProvider Settings TeleService Keyguard SystemUI
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar
@@ -154,8 +155,8 @@ baidu_modify_apps := Phone
 # You should configure the property according to your device.
 # In general, most devices support the phone book index, so the property default value is true.
 # Becareful about the initial number of index, some devices start from 0, while others start from 1.
-# override_property += \
-#     phone_book_index_supported=true
+ override_property += \
+     phone_book_index_supported=false
 
 # The property decide your ID on the backend server which statistical data for your device.
 # You should configure the property according to your ID, ie, replace "Coron" with your ID.

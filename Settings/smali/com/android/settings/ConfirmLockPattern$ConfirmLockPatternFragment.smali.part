@@ -1,0 +1,60 @@
+.method static synthetic access$baidu_200(Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;)Lcom/android/internal/widget/LockPatternUtils;
+    .locals 1
+    .parameter "x0"
+
+    .prologue
+    .line 103
+    iget-object v0, p0, Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;->mLockPatternUtils:Lcom/android/internal/widget/LockPatternUtils;
+
+    return-object v0
+.end method
+
+.method static synthetic access$baidu_304(Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;)I
+    .locals 1
+    .parameter "x0"
+
+    .prologue
+    .line 103
+    iget v0, p0, Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;->mNumWrongConfirmAttempts:I
+
+    add-int/lit8 v0, v0, 0x1
+
+    iput v0, p0, Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;->mNumWrongConfirmAttempts:I
+
+    return v0
+.end method
+
+.method static synthetic access$baidu_400(Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;J)V
+    .locals 0
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    .line 103
+    invoke-direct {p0, p1, p2}, Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;->handleAttemptLockout(J)V
+
+    return-void
+.end method
+
+.method static synthetic access$baidu_500(Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;Lcom/android/settings/ConfirmLockPattern$Stage;)V
+    .locals 0
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    .line 103
+    invoke-direct {p0, p1}, Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;->updateStage(Lcom/android/settings/ConfirmLockPattern$Stage;)V
+
+    return-void
+.end method
+
+.method static synthetic access$baidu_600(Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;)V
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    .line 103
+    invoke-direct {p0}, Lcom/android/settings/ConfirmLockPattern$ConfirmLockPatternFragment;->postClearPatternRunnable()V
+
+    return-void
+.end method

@@ -1,0 +1,116 @@
+.method private upgradeLockPatternLocation(Landroid/database/sqlite/SQLiteDatabase;)V
+    .locals 13
+    .parameter "db"
+
+    .prologue
+    const/4 v12, 0x1
+
+    const/4 v4, 0x0
+
+    .line 1706
+    const-string v1, "system"
+
+    const/4 v0, 0x2
+
+    new-array v2, v0, [Ljava/lang/String;
+
+    const/4 v0, 0x0
+
+    const-string v3, "_id"
+
+    aput-object v3, v2, v0
+
+    const-string v0, "value"
+
+    aput-object v0, v2, v12
+
+    const-string v3, "name=\'lock_pattern\'"
+
+    move-object v0, p1
+
+    move-object v5, v4
+
+    move-object v6, v4
+
+    move-object v7, v4
+
+    invoke-virtual/range {v0 .. v7}, Landroid/database/sqlite/SQLiteDatabase;->query(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+
+    move-result-object v8
+
+    .line 1708
+    .local v8, c:Landroid/database/Cursor;
+    invoke-interface {v8}, Landroid/database/Cursor;->getCount()I
+
+    move-result v0
+
+    if-lez v0, :cond_1
+
+    .line 1709
+    invoke-interface {v8}, Landroid/database/Cursor;->moveToFirst()Z
+
+    .line 1710
+    invoke-interface {v8, v12}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    .line 1711
+    .local v10, lockPattern:Ljava/lang/String;
+    invoke-static {v10}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 1714
+    :try_start_0
+    new-instance v11, Lcom/android/internal/widget/LockPatternUtils;
+
+    iget-object v0, p0, Lcom/android/providers/settings/DatabaseHelper;->mContext:Landroid/content/Context;
+
+    invoke-direct {v11, v0}, Lcom/android/internal/widget/LockPatternUtils;-><init>(Landroid/content/Context;)V
+
+    .line 1715
+    .local v11, lpu:Lcom/android/internal/widget/LockPatternUtils;
+    invoke-virtual {v11, v10}, Lcom/android/internal/widget/LockPatternUtils;->stringToPattern(Ljava/lang/String;)Ljava/util/List;
+
+    move-result-object v9
+
+    .line 1717
+    .local v9, cellPattern:Ljava/util/List;,"Ljava/util/List<Lcom/android/internal/widget/LockPatternView$Cell;>;"
+    invoke-virtual {v11, v9}, Lcom/android/internal/widget/LockPatternUtils;->saveLockPattern(Ljava/util/List;)V
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 1722
+    .end local v9           #cellPattern:Ljava/util/List;,"Ljava/util/List<Lcom/android/internal/widget/LockPatternView$Cell;>;"
+    .end local v11           #lpu:Lcom/android/internal/widget/LockPatternUtils;
+    :cond_0
+    :goto_0
+    invoke-interface {v8}, Landroid/database/Cursor;->close()V
+
+    .line 1723
+    const-string v0, "system"
+
+    const-string v1, "name=\'lock_pattern\'"
+
+    invoke-virtual {p1, v0, v1, v4}, Landroid/database/sqlite/SQLiteDatabase;->delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+
+    .line 1727
+    .end local v10           #lockPattern:Ljava/lang/String;
+    :goto_1
+    return-void
+
+    .line 1725
+    :cond_1
+    invoke-interface {v8}, Landroid/database/Cursor;->close()V
+
+    goto :goto_1
+
+    .line 1718
+    .restart local v10       #lockPattern:Ljava/lang/String;
+    :catch_0
+    move-exception v0
+
+    goto :goto_0
+.end method
