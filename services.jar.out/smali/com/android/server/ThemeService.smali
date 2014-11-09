@@ -56,6 +56,17 @@
 
 .field private mProgress:I
 
+.field private final mThemesToProcessQueue:Ljava/util/ArrayList;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/ArrayList",
+            "<",
+            "Ljava/lang/String;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private mWallpaperChangeReceiver:Landroid/content/BroadcastReceiver;
 
 .field private mWallpaperChangedByUs:Z
@@ -1113,6 +1124,118 @@
     iput-boolean v4, p0, Lcom/android/server/ThemeService;->mIsThemeApplying:Z
 
     goto/16 :goto_0
+.end method
+
+.method private doBuildIconCache()V
+    .locals 9
+
+    .prologue
+    .line 958
+    iget-object v6, p0, Lcom/android/server/ThemeService;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v6}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v5
+
+    .line 959
+    .local v5, pm:Landroid/content/pm/PackageManager;
+    new-instance v4, Landroid/content/Intent;
+
+    const-string v6, "android.intent.action.MAIN"
+
+    const/4 v7, 0x0
+
+    invoke-direct {v4, v6, v7}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
+
+    .line 960
+    .local v4, mainIntent:Landroid/content/Intent;
+    const-string v6, "android.intent.category.LAUNCHER"
+
+    invoke-virtual {v4, v6}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 962
+    const/4 v6, 0x0
+
+    invoke-virtual {v5, v4, v6}, Landroid/content/pm/PackageManager;->queryIntentActivities(Landroid/content/Intent;I)Ljava/util/List;
+
+    move-result-object v3
+
+    .line 963
+    .local v3, infos:Ljava/util/List;,"Ljava/util/List<Landroid/content/pm/ResolveInfo;>;"
+    invoke-interface {v3}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    .local v1, i$:Ljava/util/Iterator;
+    :goto_0
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_0
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Landroid/content/pm/ResolveInfo;
+
+    .line 965
+    .local v2, info:Landroid/content/pm/ResolveInfo;
+    :try_start_0
+    new-instance v6, Landroid/content/ComponentName;
+
+    iget-object v7, v2, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
+
+    iget-object v7, v7, Landroid/content/pm/ActivityInfo;->packageName:Ljava/lang/String;
+
+    iget-object v8, v2, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
+
+    iget-object v8, v8, Landroid/content/pm/ActivityInfo;->name:Ljava/lang/String;
+
+    invoke-direct {v6, v7, v8}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+
+    invoke-virtual {v5, v6}, Landroid/content/pm/PackageManager;->getActivityIcon(Landroid/content/ComponentName;)Landroid/graphics/drawable/Drawable;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_0
+
+    .line 967
+    :catch_0
+    move-exception v0
+
+    .line 968
+    .local v0, e:Ljava/lang/Exception;
+    sget-object v6, Lcom/android/server/ThemeService;->TAG:Ljava/lang/String;
+
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v8, "Unable to fetch icon for "
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-static {v6, v7, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    goto :goto_0
+
+    .line 971
+    .end local v0           #e:Ljava/lang/Exception;
+    .end local v2           #info:Landroid/content/pm/ResolveInfo;
+    :cond_0
+    return-void
 .end method
 
 .method private handlesThemeChanges(Ljava/lang/String;Ljava/util/List;)Z

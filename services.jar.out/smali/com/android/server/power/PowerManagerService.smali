@@ -235,11 +235,16 @@
 
 .field private mPolicy:Landroid/view/WindowManagerPolicy;
 
+.field mProximityListener:Landroid/hardware/SensorEventListener;
+
 .field private mProximityPositive:Z
 
 .field private mProximitySensor:Landroid/hardware/Sensor;
 
 .field private mProximityWake:Z
+
+.field mProximityWakeLock:Landroid/os/PowerManager$WakeLock;
+
 
 .field private mRequestWaitForNegativeProximity:Z
 
@@ -1245,6 +1250,47 @@
     .line 989
     .local v0, e:Ljava/lang/Exception;
     goto :goto_1
+.end method
+
+.method private cleanupProximity()V
+    .locals 2
+
+    .prologue
+    .line 1245
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mProximityWakeLock:Landroid/os/PowerManager$WakeLock;
+
+    invoke-virtual {v0}, Landroid/os/PowerManager$WakeLock;->isHeld()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 1246
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mProximityWakeLock:Landroid/os/PowerManager$WakeLock;
+
+    invoke-virtual {v0}, Landroid/os/PowerManager$WakeLock;->release()V
+
+    .line 1248
+    :cond_0
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mProximityListener:Landroid/hardware/SensorEventListener;
+
+    if-eqz v0, :cond_1
+
+    .line 1249
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mSensorManager:Landroid/hardware/SensorManager;
+
+    iget-object v1, p0, Lcom/android/server/power/PowerManagerService;->mProximityListener:Landroid/hardware/SensorEventListener;
+
+    invoke-virtual {v0, v1}, Landroid/hardware/SensorManager;->unregisterListener(Landroid/hardware/SensorEventListener;)V
+
+    .line 1250
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lcom/android/server/power/PowerManagerService;->mProximityListener:Landroid/hardware/SensorEventListener;
+
+    .line 1252
+    :cond_1
+    return-void
 .end method
 
 .method private static copyWorkSource(Landroid/os/WorkSource;)Landroid/os/WorkSource;

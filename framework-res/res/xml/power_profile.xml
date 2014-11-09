@@ -24,3 +24,5 @@
     <array name="cpu.active">
         <value>100</value>
     </array>
+    <item name="battery.capacity">2000</item>
+</device>

@@ -75,7 +75,7 @@ vendor_remove_dirs := app vendor/operator/app
 ##############################################################################
 # Vendor apks you want to use
 #-----------------------------------------------------------------------------
-vendor_saved_apps := Bluetooth BluetoothExt Stk
+vendor_saved_apps := Bluetooth BluetoothExt
 
 ##############################################################################
 # Apks build from current project root directory
@@ -126,19 +126,19 @@ vendor_modify_jars := android.policy framework framework2 pm services telephony-
 ##############################################################################
 # baidu_remove_apps: those baidu apk you want remove 
 #-----------------------------------------------------------------------------
-# baidu_remove_apps := BaiduUserFeedback.apk
+baidu_remove_apps := NfcNci.apk BaiduAppSearch.apk BaiduBackupRestore.apk BaiduClickSearch.apk BaiduMap.apk BaiduVideoEditor.apk GameCenter.apk SearchBox.apk BaiduDirectShare.apk Email2.apk Exchange2.apk HelpBook.apk iReader.apk BaiduLightApp.apk
 
 ##############################################################################
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_apps := SettingsProvider Settings TeleService Keyguard SystemUI
+baidu_modify_apps := SettingsProvider Settings TeleService Keyguard SystemUI MediaProvider
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar
 # just append *.smali.part
 #-----------------------------------------------------------------------------
-# baidu_modify_jars := android.policy
+baidu_modify_jars := framework-yi
 
 ##############################################################################
 # override_property: this property will override the build.prop
@@ -162,6 +162,8 @@ baidu_modify_apps := SettingsProvider Settings TeleService Keyguard SystemUI
 # You should configure the property according to your ID, ie, replace "Coron" with your ID.
  override_property += \
     ro.baidu.romer=Coron_Hxs
+    ro.592zn.com=www.592zn.com
+    ro.product.mod_device=ktouch3_hasz
 
 ##############################################################################
 # remove_property: this property will remove from the build.prop
