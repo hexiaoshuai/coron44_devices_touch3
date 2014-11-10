@@ -341,7 +341,7 @@
     .locals 1
 
     .prologue
-    invoke-virtual {p0}, Landroid/hardware/display/DisplayManager;->stopWifiDisplayScan()V
+    .line 382
 
     iget-object v0, p0, Landroid/hardware/display/DisplayManager;->mGlobal:Landroid/hardware/display/DisplayManagerGlobal;
 
@@ -643,14 +643,5 @@
     invoke-virtual {v0, p1}, Landroid/hardware/display/DisplayManagerGlobal;->unregisterDisplayListener(Landroid/hardware/display/DisplayManager$DisplayListener;)V
 
     .line 319
-    return-void
-.end method
-
-.method public scanWifiDisplays()V
-    .locals 1
-
-    .prologue
-    invoke-virtual {p0}, Landroid/hardware/display/DisplayManager;->startWifiDisplayScan()V
-
     return-void
 .end method

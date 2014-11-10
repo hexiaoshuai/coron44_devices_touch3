@@ -54,7 +54,8 @@ SIGN_OTA := false
 # customize weather add assert in update-script of ota package
 # set false if you don't need this assert function
 #-----------------------------------------------------------------------------
-recovery_ota_assert := false
+
+RECOVERY_OTA_ASSERT := false
 
 ##############################################################################
 # customize weather create update script in system/etc/install-recovery.sh
@@ -138,7 +139,7 @@ baidu_modify_apps := SettingsProvider BaiduServiceFramework Settings TeleService
 # baidu_modify_jars: which base the baidu's jar
 # just append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_jars := framework-yi
+#baidu_modify_jars := framework-yi
 
 ##############################################################################
 # override_property: this property will override the build.prop
