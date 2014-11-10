@@ -132,7 +132,7 @@ baidu_remove_apps := NfcNci.apk BaiduAppSearch.apk BaiduBackupRestore.apk BaiduC
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_apps := SettingsProvider Settings TeleService Keyguard SystemUI MediaProvider
+baidu_modify_apps := SettingsProvider BaiduServiceFramework Settings TeleService Keyguard SystemUI MediaProvider
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar
