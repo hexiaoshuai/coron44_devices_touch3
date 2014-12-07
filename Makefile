@@ -163,8 +163,12 @@ baidu_modify_apps := SettingsProvider BaiduServiceFramework Settings TeleService
 # You should configure the property according to your ID, ie, replace "Coron" with your ID.
  override_property += \
     ro.baidu.romer=Coron_Hxs
-    ro.592zn.com=www.592zn.com
-    ro.product.mod_device=ktouch3_hasz
+ override_property += \
+    romzj.rom.id=16e445f1-bc10-754e-1d3c-77c78c472488
+ override_property += \
+    romzj.rom.version=62
+ override_property += \
+    romzj.rom.version.code=62
 
 ##############################################################################
 # remove_property: this property will remove from the build.prop
