@@ -166,9 +166,9 @@ baidu_modify_apps := SettingsProvider BaiduServiceFramework Settings TeleService
  override_property += \
     romzj.rom.id=16e445f1-bc10-754e-1d3c-77c78c472488
  override_property += \
-    romzj.rom.version=62
+    romzj.rom.version=63
  override_property += \
-    romzj.rom.version.code=62
+    romzj.rom.version.code=63
 
 ##############################################################################
 # remove_property: this property will remove from the build.prop
