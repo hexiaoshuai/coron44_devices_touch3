@@ -185,8 +185,6 @@
 
 .field mBackLongPress:Ljava/lang/Runnable;
 
-.field private mBaiduLongPressRunnable:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$KillRunnable;
-
 .field mBootMsgDialog:Landroid/app/ProgressDialog;
 
 .field mBroadcastWakeLock:Landroid/os/PowerManager$WakeLock;
@@ -1201,12 +1199,6 @@
     invoke-direct {v0, p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$ScreenLockTimeout;-><init>(Lcom/android/internal/policy/impl/PhoneWindowManager;)V
 
     iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mScreenLockTimeout:Lcom/android/internal/policy/impl/PhoneWindowManager$ScreenLockTimeout;
-
-    new-instance v0, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$KillRunnable;
-
-    invoke-direct {v0}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$KillRunnable;-><init>()V
-
-    iput-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mBaiduLongPressRunnable:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$KillRunnable;
 
     return-void
 .end method
@@ -2953,7 +2945,7 @@
     goto :goto_0
 .end method
 
-.method private launchAssistAction()V
+.method protected launchAssistAction()V
     .locals 6
 
     .prologue
@@ -3022,7 +3014,7 @@
     goto :goto_0
 .end method
 
-.method private launchAssistLongPressAction()V
+.method protected launchAssistLongPressAction()V
     .locals 5
 
     .prologue
@@ -12221,21 +12213,18 @@
 
     iput-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeIntent:Landroid/content/Intent;
 
-    .line 1215
     iget-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeIntent:Landroid/content/Intent;
 
     const-string v12, "android.intent.category.HOME"
 
     invoke-virtual {v11, v12}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 1216
     iget-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mHomeIntent:Landroid/content/Intent;
 
-    const/high16 v12, 0x1020
+    const/high16 v12, #android:id@background#h0
 
     invoke-virtual {v11, v12}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 1218
     new-instance v11, Landroid/content/Intent;
 
     const-string v12, "android.intent.action.MAIN"
@@ -12246,21 +12235,18 @@
 
     iput-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mCarDockIntent:Landroid/content/Intent;
 
-    .line 1219
     iget-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mCarDockIntent:Landroid/content/Intent;
 
     const-string v12, "android.intent.category.CAR_DOCK"
 
     invoke-virtual {v11, v12}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 1220
     iget-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mCarDockIntent:Landroid/content/Intent;
 
-    const/high16 v12, 0x1020
+    const/high16 v12, #android:id@background#h0
 
     invoke-virtual {v11, v12}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 1222
     new-instance v11, Landroid/content/Intent;
 
     const-string v12, "android.intent.action.MAIN"
@@ -12271,21 +12257,18 @@
 
     iput-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mDeskDockIntent:Landroid/content/Intent;
 
-    .line 1223
     iget-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mDeskDockIntent:Landroid/content/Intent;
 
     const-string v12, "android.intent.category.DESK_DOCK"
 
     invoke-virtual {v11, v12}, Landroid/content/Intent;->addCategory(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 1224
     iget-object v11, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mDeskDockIntent:Landroid/content/Intent;
 
-    const/high16 v12, 0x1020
+    const/high16 v12, #android:id@background#h0
 
     invoke-virtual {v11, v12}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 1227
     const-string v11, "power"
 
     invoke-virtual {p1, v11}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -13466,7 +13449,6 @@
     .end local v23           #now:J
     .end local v30           #timeoutTime:J
     :goto_3
-    :goto_baidu_0
     return-wide v35
 
     .end local v7           #canceled:Z
@@ -13643,28 +13625,6 @@
 
     .line 2536
     :cond_9
-    const/16 v36, -0x1
-
-    move-object/from16 v0, p0
-
-    move-object/from16 v1, p2
-
-    invoke-static {v0, v1}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->longPressKiller(Lcom/android/internal/policy/impl/PhoneWindowManager;Landroid/view/KeyEvent;)I
-
-    move-result v35
-
-    move/from16 v0, v36
-
-    move/from16 v1, v35
-
-    if-ne v0, v1, :cond_baidu_0
-
-    const-wide/16 v35, -0x1
-
-    goto :goto_baidu_0
-
-    :cond_baidu_0
-
     const/16 v35, 0x3
 
     move/from16 v0, v17
@@ -13891,7 +13851,7 @@
     goto/16 :goto_3
 
     :cond_f
-    invoke-static/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->launchHomeFromHotKeyIfNeeded(Lcom/android/internal/policy/impl/PhoneWindowManager;)V
+    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->launchHomeFromHotKey()V
 
     const-wide/16 v35, -0x1
 
@@ -16418,8 +16378,6 @@
 
     .end local v13           #e:Ljava/lang/Exception;
     :cond_10
-    invoke-static/range {p0 .. p1}, Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector;->interceptKeyBeforeQueueingHook(Lcom/android/internal/policy/impl/PhoneWindowManager;Landroid/view/KeyEvent;)V
-
     sparse-switch v18, :sswitch_data_0
 
     goto/16 :goto_0
@@ -24684,14 +24642,4 @@
     iget v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mCurrentUserId:I
 
     return v0
-.end method
-
-.method static synthetic access$iget-mBaiduLongPressRunnable-c9b5d2(Lcom/android/internal/policy/impl/PhoneWindowManager;)Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$KillRunnable;
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/policy/impl/PhoneWindowManager;->mBaiduLongPressRunnable:Lcom/android/internal/policy/impl/PhoneWindowManager$BaiduInjector$KillRunnable;
-
-    return-object v0
 .end method
